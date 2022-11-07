@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { TodoService } from '../../service/todo.service';
 import { ToDoItem } from '../../model/ToDoItem';
 
@@ -9,12 +11,12 @@ import { ToDoItem } from '../../model/ToDoItem';
 })
 export class TodoitemDetailComponent implements OnInit {
 
-  get todoItem(): ToDoItem{
-    return this.todoService.currentTodoItem();
-  }
+  todoItem: ToDoItem = new ToDoItem(0, '', '', false);
 
-  constructor(public todoService: TodoService) { }
+  constructor(public todoService: TodoService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.todoItem = this.todoService.findById(Number(id));
   }
 }

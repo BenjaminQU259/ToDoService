@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { ToDoItem } from '../model/ToDoItem';
 import { TodoStoreService } from './todo-store.service';
 
@@ -14,6 +15,10 @@ export class TodoService {
 
   public get todoItems(): Array<ToDoItem> {
     return this.todoStore.getAll();
+  }
+
+  public findById(id: number): ToDoItem{
+    return this.todoStore.findById(id);
   }
 
   public create(todoItem: ToDoItem): void {
