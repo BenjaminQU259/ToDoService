@@ -61,6 +61,18 @@ describe('TodoService', () => {
     expect(httpClientSpy.get).toHaveBeenCalledWith(`${url}/${id}`);
   });
 
+  it('should respond error when get by id fails', () => {
+    // given
+    const id = 1;
+    httpClientSpy.get.and.returnValue(
+      throwError(() => ({ errorMessage: 'get failed' }))
+    );
+    // when
+    service.findById(id);
+    // then
+    expect(service.errorMessage).toEqual('');
+  });
+
   it('should remove todoItem when delete by id', () => {
     // given
     const id = 1;
@@ -69,5 +81,17 @@ describe('TodoService', () => {
     service.delete(id);
     // then
     expect(httpClientSpy.delete).toHaveBeenCalledWith(`${url}?id=${id}`);
+  });
+
+  it('should respond error when delete fails', () => {
+    // given
+    const id = 1;
+    httpClientSpy.delete.and.returnValue(
+      throwError(() => ({ errorMessage: 'delete failed' }))
+    );
+    // when
+    service.delete(id);
+    // then
+    expect(service.errorMessage).toEqual('delete failed');
   });
 });
