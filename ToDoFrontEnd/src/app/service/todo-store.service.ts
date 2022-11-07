@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToDoItem } from '../model/ToDoItem';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoStoreService {
   private readonly _todoItems: Array<ToDoItem>;
@@ -21,7 +21,7 @@ export class TodoStoreService {
   }
 
   public findById(id: number): ToDoItem {
-    let foundTodoItem = this._todoItems.find(todoItem => todoItem.id === id);
+    let foundTodoItem = this._todoItems.find((todoItem) => todoItem.id === id);
     if (foundTodoItem === undefined) {
       foundTodoItem = new ToDoItem(-1, '', '', false);
     }
@@ -29,12 +29,20 @@ export class TodoStoreService {
   }
 
   public create(todoItem: ToDoItem): void {
-    this._todoItems.push(new ToDoItem(this.generateId(),
-      todoItem.title, todoItem.description, todoItem.isDone));
+    this._todoItems.push(
+      new ToDoItem(
+        this.generateId(),
+        todoItem.title,
+        todoItem.description,
+        todoItem.isDone
+      )
+    );
   }
 
   public update(updateTodoItem: ToDoItem): void {
-    const foundTodoItem = this._todoItems.find(item => item.id === updateTodoItem.id);
+    const foundTodoItem = this._todoItems.find(
+      (item) => item.id === updateTodoItem.id
+    );
     if (foundTodoItem) {
       foundTodoItem.description = updateTodoItem.description;
       foundTodoItem.isDone = updateTodoItem.isDone;
@@ -43,7 +51,7 @@ export class TodoStoreService {
   }
 
   public delete(id: number): void {
-    const index = this._todoItems.findIndex(item => item.id === id);
+    const index = this._todoItems.findIndex((item) => item.id === id);
     if (index >= 0) {
       this._todoItems.splice(index, 1);
     }

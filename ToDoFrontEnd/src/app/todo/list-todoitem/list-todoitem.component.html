@@ -1,41 +1,29 @@
-<h1>
-    This is list-todoitem component!
-</h1>
+<h1>This is list-todoitem component!</h1>
 <table>
-    <tr>
-        <td>
-            Id
-        </td>
-        <td>
-            Title
-        </td>
-        <td>
-            Description
-        </td>
-        <td>
-            IsDone
-        </td>
-        <td>
-            Actionn
-        </td>
-    </tr>
-    <tr *ngFor='let todoItem of toDoItems'>
-        <td>
-            {{todoItem.id}}
-        </td>
-        <td>
-            {{todoItem.title}}
-        </td>
-        <td>
-            {{todoItem.description}}
-        </td>
-        <td>
-            {{todoItem.isDone}}
-        </td>
-        <td>
-            <button (click)="update(todoItem.id)">Update</button>
-            <button (click)="detail(todoItem.id)">Detail</button>
-            <button (click)="doDelete(todoItem.id)">Delete</button>
-        </td>
-    </tr>
+  <tr>
+    <td>Id</td>
+    <td>Title</td>
+    <td>Description</td>
+    <td>IsDone</td>
+    <td>Actionn</td>
+  </tr>
+  <tr *ngFor="let todoItem of toDoItems">
+    <td>
+      {{ todoItem.id }}
+    </td>
+    <td>
+      {{ todoItem.title }}
+    </td>
+    <td>
+      {{ todoItem.description }}
+    </td>
+    <td>
+      {{ todoItem.isDone }}
+    </td>
+    <td>
+      <button (click)="update(todoItem.id)">Update</button>
+      <button (click)="detail(todoItem.id)">Detail</button>
+      <button (click)="doDelete(todoItem.id)">Delete</button>
+    </td>
+  </tr>
 </table>

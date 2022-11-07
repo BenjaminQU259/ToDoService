@@ -5,21 +5,18 @@ import { TodoService } from '../../service/todo.service';
 @Component({
   selector: 'app-create-todoitem',
   templateUrl: './create-todoitem.component.html',
-  styleUrls: ['./create-todoitem.component.scss']
+  styleUrls: ['./create-todoitem.component.scss'],
 })
 export class CreateTodoitemComponent implements OnInit {
-
   public toDoItem: ToDoItem;
 
   constructor(private todoService: TodoService) {
-    this.toDoItem = new ToDoItem(0,'1', '2', false);
+    this.toDoItem = new ToDoItem(0, '1', '2', false);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public createToDoItem(): void {
     this.todoService.create(this.toDoItem);
   }
-
 }

@@ -7,19 +7,16 @@ import { TodoService } from '../../service/todo.service';
 @Component({
   selector: 'app-list-todoitem',
   templateUrl: './list-todoitem.component.html',
-  styleUrls: ['./list-todoitem.component.scss']
+  styleUrls: ['./list-todoitem.component.scss'],
 })
 export class ListTodoitemComponent implements OnInit {
-
   public get toDoItems(): ToDoItem[] {
     return this.todoService.todoItems;
   }
 
-  constructor(private todoService: TodoService, private router: Router) {
-  }
+  constructor(private todoService: TodoService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public detail(id: number): void {
     this.router.navigate(['todos', id]);

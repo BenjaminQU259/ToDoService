@@ -1,13 +1,13 @@
 <h1>This is update todo-item component</h1>
 
 <form>
-    <label>Id</label>
-    <h4>{{todoItem.id}}</h4>
-    <label>Title: </label>
-    <input type="text" name="title" [(ngModel)]="todoItem.title">
-    <label>Description: </label>
-    <input type="text" name="description" [(ngModel)]="todoItem.description">
-    <label>IsDone</label>
-    <input type="checkbox" name="isDone" [(ngModel)]="todoItem.isDone">
-    <button type="submit" (click)="update()">Submit</button>
+  <label>Id</label>
+  <h4>{{ todoItem.id }}</h4>
+  <label>Title: </label>
+  <input type="text" name="title" [(ngModel)]="todoItem.title" />
+  <label>Description: </label>
+  <input type="text" name="description" [(ngModel)]="todoItem.description" />
+  <label>IsDone</label>
+  <input type="checkbox" name="isDone" [(ngModel)]="todoItem.isDone" />
+  <button type="submit" (click)="update()">Submit</button>
 </form>

@@ -24,20 +24,4 @@ export class TodoApiService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}?id=${id}`);
   }
-
-  // getAll(): ToDoItem[] {
-  //   const items = this.read();
-  //   return items;
-  // }
-
-  // readObservable(): Observable<ToDoItem[]> {
-  //   return this.http.get<ToDoItem[]>(this.url);
-  // }
-
-  // private read(): ToDoItem[] {
-  //   this.http.get<ToDoItem[]>(this.url).subscribe((res) => {
-  //     this.items = res;
-  //   });
-  //   return this.items;
-  // }
 }

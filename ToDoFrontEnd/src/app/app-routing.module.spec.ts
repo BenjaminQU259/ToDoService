@@ -12,7 +12,7 @@ describe('Router', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
-      declarations: []
+      declarations: [],
     });
 
     router = TestBed.get(Router);
@@ -21,7 +21,7 @@ describe('Router', () => {
     router.initialNavigation();
   });
 
-  it('should go to todos when navigate ""', fakeAsync(() =>{
+  it('should go to todos when navigate ""', fakeAsync(() => {
     // given
     // when
     router.navigate(['']);
@@ -29,7 +29,7 @@ describe('Router', () => {
     // then
     expect(location.path()).toEqual('/todos');
   }));
-  it('should go to create when navigate "todos/create"', fakeAsync(() =>{
+  it('should go to create when navigate "todos/create"', fakeAsync(() => {
     // given
     // when
     router.navigate(['todos', 'create']);
@@ -37,7 +37,7 @@ describe('Router', () => {
     // then
     expect(location.path()).toEqual('/todos/create');
   }));
-  it('should go to details when navigate "todos/:id"', fakeAsync(() =>{
+  it('should go to details when navigate "todos/:id"', fakeAsync(() => {
     // given
     // when
     router.navigate(['todos', 1]);
@@ -45,7 +45,7 @@ describe('Router', () => {
     // then
     expect(location.path()).toEqual('/todos/1');
   }));
-  it('should go to update when navigate "todos/edit/:id"', fakeAsync(() =>{
+  it('should go to update when navigate "todos/edit/:id"', fakeAsync(() => {
     // given
     // when
     router.navigate(['todos', 'edit', 1]);

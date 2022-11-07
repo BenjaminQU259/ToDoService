@@ -8,7 +8,7 @@ describe('TodoApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [HttpClientModule],
     });
     service = TestBed.inject(TodoApiService);
   });

@@ -10,28 +10,28 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: '/todos',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'todos',
-    component: ListTodoitemComponent
+    component: ListTodoitemComponent,
   },
   {
     path: 'todos/create',
-    component: CreateTodoitemComponent
+    component: CreateTodoitemComponent,
   },
   {
     path: 'todos/:id',
-    component: TodoitemDetailComponent
+    component: TodoitemDetailComponent,
   },
   {
     path: 'todos/edit/:id',
-    component: UpdateTodoItemComponent
-  }
+    component: UpdateTodoItemComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
