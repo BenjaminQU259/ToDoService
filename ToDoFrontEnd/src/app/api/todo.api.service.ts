@@ -5,17 +5,39 @@ import { Observable } from 'rxjs';
 import { ToDoItem } from '../model/ToDoItem';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoApiService {
+  private url: string = 'https://localhost:5001/todos/';
+  private items: ToDoItem[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  create(todoItem: ToDoItem): Observable<void> {
-    return this.http.post<void>('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos', todoItem);
+  create(toDoItem: ToDoItem): Observable<void> {
+    return this.http.post<void>(this.url, toDoItem);
   }
 
-  // getAll(): Observable<ToDoItem[]> {
-  //   return this.http.get<ToDoItem[]>('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos');
-  // }
+  findById(id: number): Observable<ToDoItem> {
+    return this.http.get<ToDoItem>(`${this.url}${id}`);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}${id}`);
+  }
+
+  getAll(): ToDoItem[] {
+    const items = this.read();
+    return items;
+  }
+
+  readObservable(): Observable<ToDoItem[]> {
+    return this.http.get<ToDoItem[]>(this.url);
+  }
+
+  private read(): ToDoItem[] {
+    this.http.get<ToDoItem[]>(this.url).subscribe((res) => {
+      this.items = res;
+    });
+    return this.items;
+  }
 }
