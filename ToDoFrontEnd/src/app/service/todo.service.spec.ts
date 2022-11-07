@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { TodoApiService } from '../api/todo.api.service';
 import { ToDoItem } from '../model/ToDoItem';
 
 import { TodoStoreService } from './todo-store.service';
@@ -13,7 +15,12 @@ describe('TodoService', () => {
   beforeEach(() => {
     httpClient = jasmine.createSpyObj('HttpClient', ['post']);
     todoStoreService = new TodoStoreService();
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        TodoApiService,
+        {provide: HttpClient, useValue: httpClient}
+      ]
+    });
     service = TestBed.inject(TodoService);
   });
 
@@ -27,7 +34,7 @@ describe('TodoService', () => {
     // when
     service.create(todoItem);
     // then
-    expect(httpClient.post).toHaveBeenCalledWith('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos', todoItem)
+    expect(httpClient.post).toHaveBeenCalledWith('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos', todoItem);
 
   })
 });
