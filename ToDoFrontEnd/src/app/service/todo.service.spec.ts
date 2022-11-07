@@ -54,23 +54,20 @@ describe('TodoService', () => {
 
   it('should get todoItem when get by id', () => {
     // given
-    const todoItem = new ToDoItem(9, 'title', 'description', true);
-    httpClientSpy.post.and.returnValue(of({}));
-    service.create(todoItem);
+    const id = 1;
     // when
-    service.findById(9);
+    service.findById(id);
     // then
-    expect(httpClientSpy.get).toHaveBeenCalledWith(`${url}/9`);
+    expect(httpClientSpy.get).toHaveBeenCalledWith(`${url}/${id}`);
   });
 
   it('should remove todoItem when delete by id', () => {
     // given
-    const todoItem = new ToDoItem(9, 'title', 'description', true);
-    httpClientSpy.post.and.returnValue(of({}));
-    service.create(todoItem);
+    const id = 1;
+    httpClientSpy.delete.and.returnValue(of({}));
     // when
-    service.delete(9);
+    service.delete(id);
     // then
-    expect(httpClientSpy.delete).toHaveBeenCalledWith(`${url}?id=9`);
+    expect(httpClientSpy.delete).toHaveBeenCalledWith(`${url}?id=${id}`);
   });
 });

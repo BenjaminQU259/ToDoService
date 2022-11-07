@@ -8,36 +8,36 @@ import { ToDoItem } from '../model/ToDoItem';
   providedIn: 'root',
 })
 export class TodoApiService {
-  private url: string = 'https://localhost:5001/todos/';
+  private url: string = 'https://localhost:5001/todos';
   private items: ToDoItem[] = [];
 
   constructor(private http: HttpClient) {}
 
   create(toDoItem: ToDoItem): Observable<void> {
-    return this.http.post<void>(this.url, toDoItem);
+    return this.http.post<void>(`${this.url}/`, toDoItem);
   }
 
   findById(id: number): Observable<ToDoItem> {
-    return this.http.get<ToDoItem>(`${this.url}${id}`);
+    return this.http.get<ToDoItem>(`${this.url}/${id}`);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}${id}`);
+    return this.http.delete<void>(`${this.url}?id=${id}`);
   }
 
-  getAll(): ToDoItem[] {
-    const items = this.read();
-    return items;
-  }
+  // getAll(): ToDoItem[] {
+  //   const items = this.read();
+  //   return items;
+  // }
 
-  readObservable(): Observable<ToDoItem[]> {
-    return this.http.get<ToDoItem[]>(this.url);
-  }
+  // readObservable(): Observable<ToDoItem[]> {
+  //   return this.http.get<ToDoItem[]>(this.url);
+  // }
 
-  private read(): ToDoItem[] {
-    this.http.get<ToDoItem[]>(this.url).subscribe((res) => {
-      this.items = res;
-    });
-    return this.items;
-  }
+  // private read(): ToDoItem[] {
+  //   this.http.get<ToDoItem[]>(this.url).subscribe((res) => {
+  //     this.items = res;
+  //   });
+  //   return this.items;
+  // }
 }

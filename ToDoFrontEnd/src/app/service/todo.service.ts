@@ -28,9 +28,9 @@ export class TodoService {
 
   public create(todoItem: ToDoItem): void {
     this.todoApi.create(todoItem).subscribe({
-      next: (response) => {},
-      error: (error) => {
-        this.errorMessage = error.errorMessage;
+      next: (res) => {},
+      error: (err) => {
+        this.errorMessage = err.errorMessage;
       },
     });
   }
@@ -40,11 +40,10 @@ export class TodoService {
   }
 
   public delete(id: number): void {
-    // this.todoStore.delete(id);
     this.todoApi.delete(id).subscribe({
-      next: (response) => {},
-      error: (error) => {
-        this.errorMessage = error.errorMessage;
+      next: (res) => {},
+      error: (err) => {
+        this.errorMessage = err.errorMessage;
       },
     });
   }
