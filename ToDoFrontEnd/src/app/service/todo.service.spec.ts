@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { throwError } from 'rxjs';
 
 import { TodoApiService } from '../api/todo.api.service';
 import { ToDoItem } from '../model/ToDoItem';
@@ -8,14 +9,14 @@ import { TodoService } from './todo.service';
 describe('TodoService', () => {
 
   let service: TodoService;
-  let httpClient: any;
+  let httpClientSpy: any;
 
   beforeEach(() => {
-    httpClient = jasmine.createSpyObj('HttpClient', ['post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
     TestBed.configureTestingModule({
       providers: [
         TodoApiService,
-        {provide: HttpClient, useValue: httpClient}
+        {provide: HttpClient, useValue: httpClientSpy}
       ]
     });
     service = TestBed.inject(TodoService);
@@ -31,13 +32,16 @@ describe('TodoService', () => {
     // when
     service.create(todoItem);
     // then
-    expect(httpClient.post).toHaveBeenCalledWith('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos', todoItem);
+    expect(httpClientSpy.post).toHaveBeenCalledWith('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos', todoItem);
   })
-  it('should get todoItems via mockHttp get', () => {
+
+  it('should respond error when create fails', () => {
     // given
+    const todoItem = new ToDoItem(9, 'title', 'description', true);
+    httpClientSpy.post.and.returnValue(throwError(() => ({errorMessage: 'create failed'})));
     // when
-    service.getAll();
+    service.create(todoItem);
     // then
-    expect(httpClient.get).toHaveBeenCalledWith('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos');
+    expect(service.errorMessage).toEqual('create failed');
   })
 });
