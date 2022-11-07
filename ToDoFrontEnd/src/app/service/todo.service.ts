@@ -12,12 +12,12 @@ export class TodoService {
   private _selectedTodoItem: ToDoItem = {} as ToDoItem;
   private _updatingTodoItem: ToDoItem = {} as ToDoItem;
   errorMessage?: string;
-  
   constructor(private todoStore: TodoStoreService, private todoApi: TodoApiService) {
   }
 
   public get todoItems(): Array<ToDoItem> {
     return this.todoStore.getAll();
+    // return this.todoApi.getAll();
   }
 
   public findById(id: number): ToDoItem{
@@ -25,7 +25,12 @@ export class TodoService {
   }
 
   public create(todoItem: ToDoItem): void {
-    this.todoApi.create(todoItem);
+    this.todoApi.create(todoItem).subscribe({
+      next: response => {},
+      error: error => {
+        this.errorMessage = error.errorMessage
+      }
+    });
   }
 
   public update(updateTodoItem: ToDoItem): void {

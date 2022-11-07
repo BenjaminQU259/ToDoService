@@ -14,4 +14,8 @@ export class TodoApiService {
   create(todoItem: ToDoItem): Observable<void> {
     return this.http.post<void>('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos', todoItem);
   }
+
+  // getAll(): Observable<ToDoItem[]> {
+  //   return this.http.get<ToDoItem[]>('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos');
+  // }
 }
